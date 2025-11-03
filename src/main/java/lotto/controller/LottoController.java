@@ -47,7 +47,9 @@ public class LottoController {
     private WinningLotto getValidWinningLotto() {
         while (true) {
             try {
-                return inputView.inputWinningLotto();
+                List<Integer> winningNumbers = inputView.getWinningNumbers();
+                int bonus = inputView.getBonusNumber(winningNumbers);
+                return lottoService.createWinningLotto(winningNumbers, bonus);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

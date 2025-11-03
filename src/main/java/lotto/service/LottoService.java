@@ -31,4 +31,8 @@ public class LottoService {
         return result;
     }
 
+    public WinningLotto createWinningLotto(List<Integer> numbers, int bonus) {
+        return new WinningLotto(new Lotto(numbers), bonus);
+    }
+
 }

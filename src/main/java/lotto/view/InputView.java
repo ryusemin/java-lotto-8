@@ -14,20 +14,12 @@ public class InputView {
         return InputParser.parseAmount(Console.readLine());
     }
 
-    public WinningLotto inputWinningLotto() {
-        List<Integer> winningNumbers = getWinningNumbers();
-
-        int bonus = getBonusNumber(winningNumbers);
-
-        return new WinningLotto(new Lotto(winningNumbers), bonus);
-    }
-
-    private List<Integer> getWinningNumbers() {
+    public List<Integer> getWinningNumbers() {
         System.out.println("\n당첨 번호를 입력해 주세요.");
         return InputParser.parseNumbers(Console.readLine());
     }
 
-    private int getBonusNumber(List<Integer> winningNumbers) {
+    public int getBonusNumber(List<Integer> winningNumbers) {
         System.out.println("\n보너스 번호를 입력해 주세요.");
         return InputParser.parseBonus(Console.readLine(), winningNumbers);
     }
