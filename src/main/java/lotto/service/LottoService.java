@@ -1,8 +1,6 @@
 package lotto.service;
 
-import lotto.model.Lotto;
-import lotto.model.LottoGenerator;
-import lotto.model.WinningLotto;
+import lotto.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +16,18 @@ public class LottoService {
             lottos.add(LottoGenerator.createLotto());
         }
         return lottos;
+    }
+
+    public LottoResult calculateResult(List<Lotto> lottos, WinningLotto winningLotto) {
+        LottoResult result = new LottoResult();
+
+        for (Lotto lotto : lottos) {
+            int matchCount = winningLotto.countMatch(lotto);
+            boolean bonus = winningLotto.isBonusMatched(lotto);
+            Rank rank = Rank.valueOf(matchCount, bonus);
+            result.add(rank);
+        }
+        return result;
     }
 
 }

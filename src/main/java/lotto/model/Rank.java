@@ -30,5 +30,15 @@ public enum Rank {
     public int getReward() {
         return reward;
     }
+
+    public int getMatchCount(){
+        return matchCount;
+    }
+
+    public boolean hasBonusMatch() {
+        return bonus;
+    }
+
+
 }
 
