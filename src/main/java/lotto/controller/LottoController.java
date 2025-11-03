@@ -10,6 +10,8 @@ import lotto.view.OutputView;
 import java.util.List;
 
 public class LottoController {
+    private static final int LOTTO_PRICE = 1000;
+
     private final InputView inputView;
     private final OutputView outputView;
     private final LottoService lottoService;
@@ -26,7 +28,7 @@ public class LottoController {
 
         LottoResult result = lottoService.calculateResult(purchased, winningLotto);
 
-        outputView.printResult(result, purchased.size());
+        outputView.printResult(result, purchased.size() * LOTTO_PRICE);
     }
 
     private List<Lotto> getValidLottos() {
