@@ -21,14 +21,34 @@ public class LottoController {
     }
 
     public void run() {
-        int amount = inputView.inputPurchaseAmount();
-        List<Lotto> purchased = lottoService.buyLottos(amount);
-        outputView.printPurchasedLottos(purchased);
+        List<Lotto> purchased = getValidLottos();
+        WinningLotto winningLotto = getValidWinningLotto();
 
-        WinningLotto winningLotto = inputView.inputWinningLotto();
         LottoResult result = lottoService.calculateResult(purchased, winningLotto);
 
-        outputView.printResult(result, amount);
+        outputView.printResult(result, purchased.size());
+    }
 
+    private List<Lotto> getValidLottos() {
+        while (true) {
+            try {
+                int amount = inputView.inputPurchaseAmount();
+                List<Lotto> purchased = lottoService.buyLottos(amount);
+                outputView.printPurchasedLottos(purchased);
+                return purchased;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private WinningLotto getValidWinningLotto() {
+        while (true) {
+            try {
+                return inputView.inputWinningLotto();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

@@ -13,7 +13,7 @@ public class LottoResult {
     public Map<Rank, Integer> getResult() {
         return result;
     }
-    
+
     // 수익률 계산
     public double calculateProfit(int totalAmount) {
         int sum = result.entrySet().stream()
