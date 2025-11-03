@@ -1,5 +1,6 @@
 package lotto.util;
 
+import lotto.exception.ErrorMessage;
 import lotto.validator.LottoValidator;
 
 import java.util.Arrays;
@@ -11,7 +12,7 @@ public class InputParser {
         try {
             return Integer.parseInt(input.trim());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자 형식의 금액을 입력하세요.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_AMOUNT_FORMAT);
         }
     }
 
@@ -25,7 +26,7 @@ public class InputParser {
             LottoValidator.validateNumbers(numbers);
             return numbers;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 형식에 맞게 입력하세요. 예) 1,2,3,4,5,6");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_FORMAT);
         }
     }
 
@@ -35,7 +36,7 @@ public class InputParser {
             LottoValidator.validateBonus(winningNumbers, bonus);
             return bonus;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 형식에 맞게 입력하세요. 예) 7");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_FORMAT);
         }
     }
 }
